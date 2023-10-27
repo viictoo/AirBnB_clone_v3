@@ -74,14 +74,16 @@ test_db_storage.py'])
         instance = State()
         instance.save()
         id = instance.id
-        obj = storage.get(State, id)
+        obj = DBStorage.get(State, id)
         self.assertEqual(instance, obj)
+        DBStorage.delete(instance)
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_count(self):
         """Testing for the count method of the dbstorage
         """
-        self.assertIsInstance(storage.count(), int)
+        self.assertIsInstance(DBStorage.count(), int)
+        self.assertIsInstance(DBStorage.count(State), int)
 
 
 class TestFileStorage(unittest.TestCase):

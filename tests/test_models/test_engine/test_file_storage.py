@@ -123,9 +123,11 @@ class TestFileStorage(unittest.TestCase):
         id = instance.id
         obj = storage.get(State, id)
         self.assertEqual(instance, obj)
+        FileStorage.delete(instance)
 
     @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
     def test_count(self):
         """Testing for the count method of the fsstorage
         """
         self.assertIsInstance(storage.count(), int)
+        self.assertIsInstance(storage.count(State), int)
