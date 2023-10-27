@@ -68,23 +68,6 @@ test_db_storage.py'])
             self.assertTrue(len(func[1].__doc__) >= 1,
                             "{:s} method needs a docstring".format(func[0]))
 
-    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
-    def test_get(self):
-        """Testing for the get method of the dbstorage"""
-        instance = State()
-        instance.save()
-        id = instance.id
-        obj = DBStorage.get(State, id)
-        self.assertEqual(instance, obj)
-        DBStorage.delete(instance)
-
-    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
-    def test_count(self):
-        """Testing for the count method of the dbstorage
-        """
-        self.assertIsInstance(DBStorage.count(), int)
-        self.assertIsInstance(DBStorage.count(State), int)
-
 
 class TestFileStorage(unittest.TestCase):
     """Test the FileStorage class"""
@@ -104,3 +87,20 @@ class TestFileStorage(unittest.TestCase):
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_save(self):
         """Test that save properly saves objects to file.json"""
+
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def test_get(self):
+        """Testing for the get method of the dbstorage"""
+        instance = State()
+        instance.save()
+        id = instance.id
+        obj = DBStorage.get(State, id)
+        self.assertEqual(instance, obj)
+        DBStorage.delete(instance)
+
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def test_count(self):
+        """Testing for the count method of the dbstorage
+        """
+        self.assertIsInstance(DBStorage.count(), int)
+        self.assertIsInstance(DBStorage.count(State), int)
