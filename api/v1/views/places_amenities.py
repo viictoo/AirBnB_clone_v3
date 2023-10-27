@@ -34,8 +34,10 @@ def all_place_amens(place_id):
 def del_place_amens(place_id, amenity_id):
     """ Deletes a Amenity object to a Place """
     place = storage.get(Place, place_id)
-    amen = storage.get(place, amenity_id)
-    if not place or amen:
+    if not place:
+        abort(404)
+    amen = storage.get(Amenity, amenity_id)
+    if not amen:
         abort(404)
     if getenv('HBNB_TYPE_STORAGE') == "db":
         if amen not in place.amenities:
@@ -56,8 +58,10 @@ def create_place_amens(place_id, amenity_id):
     """ Link a Amenity object to a Place """
 
     place = storage.get(Place, place_id)
+    if not place:
+        abort(404)
     amen = storage.get(Amenity, amenity_id)
-    if not place or amen:
+    if not amen:
         abort(404)
     if getenv('HBNB_TYPE_STORAGE') == "db":
         if amen in place.amenities:
