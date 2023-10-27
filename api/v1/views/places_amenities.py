@@ -18,7 +18,7 @@ def all_place_amens(place_id):
     if not place:
         abort(404)
     list_all = []
-    if getenv('HBNB_TYPE_STORAGE') == "db":
+    if getenv('HBNB_TYPE_STORAGE') != "db":
         for amen in place.amenities:
             list_all.append(amen.to_dict())
     else:
