@@ -78,12 +78,22 @@ def state_put(state_id):
     Returns:
     State object with the status code 200
     """
+    # state = storage.get(State, state_id)
+    # if not state:
+    #     abort(400)
+    # request_body = request.get_json()
+    # if not request_body:
+    #     abort(400, description="Not a JSON")
+
     state = storage.get(State, state_id)
+
     if not state:
-        abort(400)
-    request_body = request.get_json()
-    if not request_body:
+        abort(404)
+
+    if not request.get_json():
         abort(400, description="Not a JSON")
+
+    request_body = request.get_json()
     ignore = ['id', 'created_at', 'updated_at']
     for key, value in request_body.items():
         if key not in ignore:
