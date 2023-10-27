@@ -68,46 +68,24 @@ def state_post():
     return make_response(jsonify(state.to_dict()), 201)
 
 
-# @app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
-# def state_put(state_id):
-#     """Updates a state object
-
-#     Args:
-#         state_id (str): state id
-
-#     Returns:
-#     State object with the status code 200
-#     """
-#     state = storage.get(State, state_id)
-#     if not state:
-#         abort(400)
-#     request_body = request.get_json()
-#     if not request_body:
-#         abort(400, description="Not a JSON")
-#     for key, value in request_body.items():
-#         if key != 'id' and key != 'created_at' and key != 'updated_at':
-#             setattr(state, key, value)
-#     storage.save()
-#     return make_response(jsonify(state.to_dict()), 200)
-
-
 @app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
-def put_state(state_id):
-    """
-    Updates a State
+def state_put(state_id):
+    """Updates a state object
+
+    Args:
+        state_id (str): state id
+
+    Returns:
+    State object with the status code 200
     """
     state = storage.get(State, state_id)
-
     if not state:
-        abort(404)
-
-    if not request.get_json():
+        abort(400)
+    request_body = request.get_json()
+    if not request_body:
         abort(400, description="Not a JSON")
-
     ignore = ['id', 'created_at', 'updated_at']
-
-    data = request.get_json()
-    for key, value in data.items():
+    for key, value in request_body.items():
         if key not in ignore:
             setattr(state, key, value)
     storage.save()
