@@ -115,19 +115,41 @@ class TestFileStorage(unittest.TestCase):
             js = f.read()
         self.assertEqual(json.loads(string), json.loads(js))
 
-    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
-    def test_get(self):
-        """Testing for the get method of the fsstorage"""
-        instance = State()
-        instance.save()
-        id = instance.id
-        obj = storage.get(State, id)
-        self.assertEqual(instance, obj)
-        FileStorage.delete(instance)
+    # @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    # def test_get(self):
+    #     """Testing for the get method of the fsstorage"""
+    #     instance = State()
+    #     instance.save()
+    #     id = instance.id
+    #     obj = storage.get(State, id)
+    #     self.assertEqual(instance, obj)
+    #     FileStorage.delete(instance)
 
-    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    # @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    # def test_count(self):
+    #     """Testing for the count method of the fsstorage
+    #     """
+    #     self.assertIsInstance(storage.count(), int)
+    #     self.assertIsInstance(storage.count(State), int)
+    def test_get_db(self):
+        """ Test get instance from storage """
+        storage = FileStorage()
+        kwargs = {"name": "Mbali"}
+        instance = State(**kwargs)
+        storage.new(instance)
+        storage.save()
+        get_ins = storage.get(State, instance.id)
+        self.assertEqual(get_ins, instance)
+
     def test_count(self):
-        """Testing for the count method of the fsstorage
-        """
-        self.assertIsInstance(storage.count(), int)
-        self.assertIsInstance(storage.count(State), int)
+        """ Tests count storage onjects """
+        storage = FileStorage()
+        kwarg = {"name": "Furthermore"}
+        state = State(**kwarg)
+        storage.new(state)
+        kwargs = {"name": "Kwetu", "state_id": state.id}
+        city = City(**kwargs)
+        storage.new(city)
+        storage.save()
+        num = storage.count()
+        self.assertEqual(num, len(storage.all()))
