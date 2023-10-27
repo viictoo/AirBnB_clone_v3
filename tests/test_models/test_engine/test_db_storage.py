@@ -88,7 +88,6 @@ class TestFileStorage(unittest.TestCase):
     def test_save(self):
         """Test that save properly saves objects to file.json"""
 
-
     def test_get_db(self):
         """ Tests method for obtaining an instance db storage"""
         dic = {"name": "Mbali"}
