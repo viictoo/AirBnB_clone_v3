@@ -58,14 +58,13 @@ def state_post():
     new State with the status code 201
     """
     if not request.get_json():
-        return abort(400, description="Not a JSON")
+        abort(400, description="Not a JSON")
 
     if 'name' not in request.get_json():
-        return abort(400, description="Missing name")
-    req = request.get_json()
-    insta = State(**req)
-    # storage.new(state)
-    insta.save()
+        abort(400, description="Missing name")
+    state = State(**request.get_json())
+    storage.new(state)
+    storage.save()
     return make_response(jsonify(state.to_dict()), 201)
 
 
