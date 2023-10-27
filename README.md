@@ -159,6 +159,7 @@ Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://tw
 
 ### AirBnB V3 AUTHORS
 Victor Langat - [Github](https://github.com/viictoo) / [Twitter](https://twitter.com/victor_provich)
+Winnie Winfred Winny Winnifred Wino - [Github](https://github.com/winniewandia) / [Twitter](https://twitter.com/wandia_winfred)
 
 Second part of Airbnb: Joann Vuong
 ## License
