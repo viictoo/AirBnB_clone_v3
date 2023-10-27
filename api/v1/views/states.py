@@ -58,9 +58,9 @@ def state_post():
     new State with the status code 201
     """
     if not request.get_json():
-        return abort(400, "Not a JSON")
+        return abort(400, description="Not a JSON")
     if 'name' not in request.get_json():
-        return abort(400, "Missing name")
+        return abort(400, description="Missing name")
     state = State(**request.get_json())
     storage.new(state)
     storage.save()
@@ -82,7 +82,7 @@ def state_put(state_id):
         abort(400)
     request_body = request.get_json()
     if not request_body:
-        abort(400, "Not a JSON")
+        abort(400, description="Not a JSON")
     for key, value in request_body.items():
         if key != 'id' and key != 'created_at' and key != 'updated_at':
             setattr(state, key, value)
