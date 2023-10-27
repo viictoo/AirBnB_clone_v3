@@ -17,14 +17,21 @@ def all_place_amens(place_id):
     place = storage.get(Place, place_id)
     if not place:
         abort(404)
-    list_all = []
-    if getenv('HBNB_TYPE_STORAGE') != "db":
-        for amen in place.amenities:
-            list_all.append(amen.to_dict())
+    # list_all = []
+    # if getenv('HBNB_TYPE_STORAGE') == "db":
+    #     for amen in place.amenities:
+    #         list_all.append(amen.to_dict())
+    # else:
+    #     for amen in place.amenity_ids:
+    #         list_all.append(storage.get(Amenity, amen).to_dict())
+    # return jsonify(list_all)
+    if environ.get('HBNB_TYPE_STORAGE') == "db":
+        amenities = [amenity.to_dict() for amenity in place.amenities]
     else:
-        for amen in place.amenity_ids:
-            list_all.append(storage.get(Amenity, amen).to_dict())
-    return jsonify(list_all)
+        amenities = [storage.get(Amenity, amenity_id).to_dict()
+                     for amenity_id in place.amenity_ids]
+
+    return jsonify(amenities)
 
 
 @app_views.route('/places/<place_id>/amenities/<amenity_id>',
