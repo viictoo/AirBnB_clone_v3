@@ -96,7 +96,7 @@ def search_places():
     """
 
     if request.get_json() is None:
-        abort(400, description="Not a JSON")
+        abort(400, "Not a JSON")
 
     obj = request.get_json()
 
@@ -144,5 +144,5 @@ def search_places():
     for l_el in list_places:
         dic = l_el.to_dict()
         dic.pop('amenities', None)
-        places.append(dic)
+        lis_places.append(dic)
     return jsonify(lis_places)
