@@ -19,12 +19,14 @@ def teardown(err):
 
 
 @app.errorhandler(404)
-def error_404(err):
+def not_found(err):
     """handle errors"""
     return make_response(jsonify({"error": "Not found"}), 404)
 
 
 if __name__ == "__main__":
+    """entry point
+    """
     host = getenv('HBNB_API_HOST')
     port = getenv('HBNB_API_PORT')
     if not host:
