@@ -90,7 +90,7 @@ class TestFileStorage(unittest.TestCase):
 
     def test_get_db(self):
         """ Test get instance from storage """
-        storage = DBStorage()
+        # storage = DBStorage()
         kwargs = {"name": "Mbali"}
         instance = State(**kwargs)
         storage.new(instance)
@@ -100,7 +100,7 @@ class TestFileStorage(unittest.TestCase):
 
     def test_count(self):
         """ Tests count storage onjects """
-        storage = DBStorage()
+        # storage = DBStorage()
         kwarg = {"name": "Furthermore"}
         state = State(**kwarg)
         storage.new(state)

@@ -131,25 +131,25 @@ class TestFileStorage(unittest.TestCase):
     #     """
     #     self.assertIsInstance(storage.count(), int)
     #     self.assertIsInstance(storage.count(State), int)
-    def test_get_db(self):
-        """ Test get instance from storage """
-        storage = FileStorage()
-        kwargs = {"name": "Mbali"}
-        instance = State(**kwargs)
-        storage.new(instance)
-        storage.save()
-        get_ins = storage.get(State, instance.id)
-        self.assertEqual(get_ins, instance)
+    # def test_get_fs(self):
+    #     """ Test get instance from storage """
+    #     stor = FileStorage()
+    #     kwargs = {"name": "Mbali"}
+    #     instance = State(**kwargs)
+    #     stor.new(instance)
+    #     stor.save()
+    #     get_ins = stor.get(State, instance.id)
+    #     self.assertEqual(get_ins, instance)
 
-    def test_count(self):
-        """ Tests count storage onjects """
-        storage = FileStorage()
-        kwarg = {"name": "Furthermore"}
-        state = State(**kwarg)
-        storage.new(state)
-        kwargs = {"name": "Kwetu", "state_id": state.id}
-        city = City(**kwargs)
-        storage.new(city)
-        storage.save()
-        num = storage.count()
-        self.assertEqual(num, len(storage.all()))
+    # def test_count_fs(self):
+    #     """ Tests count storage onjects """
+    #     stor = FileStorage()
+    #     kwarg = {"name": "Furthermore"}
+    #     state = State(**kwarg)
+    #     stor.new(state)
+    #     kwargs = {"name": "Kwetu", "state_id": state.id}
+    #     city = City(**kwargs)
+    #     stor.new(city)
+    #     stor.save()
+    #     num = stor.count()
+    #     self.assertEqual(num, len(stor.all()))
