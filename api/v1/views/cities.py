@@ -89,10 +89,10 @@ def city_put(city_id):
     """
     city = storage.get(City, city_id)
     if not city:
-        abort(400)
+        abort(404)
     # request_body = request.get_json()
     if not request.get_json():
-        abort(400, "Not a JSON")
+        abort(400, description="Not a JSON")
     request_body = request.get_json()
     for key, value in request_body.items():
         if key != 'id' and key != 'created_at' and\
