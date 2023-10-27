@@ -80,7 +80,7 @@ def user_put(user_id):
     """
     user = storage.get(User, user_id)
     if not user:
-        abort(400)
+        abort(404)
     request_body = request.get_json()
     if not request_body:
         abort(400, "Not a JSON")
