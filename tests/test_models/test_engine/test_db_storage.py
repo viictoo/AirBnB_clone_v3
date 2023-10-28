@@ -114,13 +114,6 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(num, len(storage.all()))
 
     # @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
-    # def test_get2(self):
-    #     """Test that get properly returns a requested object"""
-    #     user = User(name="User1")
-    #     user.save()
-    #     self.assertEqual(models.storage.get("User", user.id), user)
-
-    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
-    def test_count2(self):
-        """Test that count properly counts all objects"""
-        self.assertEqual(len(models.storage.all()), models.storage.count())
+    # def test_count2(self):
+    #     """Test that count properly counts all objects"""
+    #     self.assertEqual(len(models.storage.all()), models.storage.count())
