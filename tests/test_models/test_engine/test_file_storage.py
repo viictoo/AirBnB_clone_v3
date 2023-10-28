@@ -131,25 +131,18 @@ class TestFileStorage(unittest.TestCase):
         """
         self.assertIsInstance(storage.count(), int)
         self.assertIsInstance(storage.count(State), int)
-    # def test_get_fs(self):
-    #     """ Test get instance from storage """
-    #     stor = FileStorage()
-    #     kwargs = {"name": "Mbali"}
-    #     instance = State(**kwargs)
-    #     stor.new(instance)
-    #     stor.save()
-    #     get_ins = stor.get(State, instance.id)
-    #     self.assertEqual(get_ins, instance)
 
-    # def test_count_fs(self):
-    #     """ Tests count storage onjects """
-    #     stor = FileStorage()
-    #     kwarg = {"name": "Furthermore"}
-    #     state = State(**kwarg)
-    #     stor.new(state)
-    #     kwargs = {"name": "Kwetu", "state_id": state.id}
-    #     city = City(**kwargs)
-    #     stor.new(city)
-    #     stor.save()
-    #     num = stor.count()
-    #     self.assertEqual(num, len(stor.all()))
+    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    def test_get2(self):
+        """Test that get properly returns a requested object"""
+        storage = FileStorage()
+        user = User(name="User1")
+        user.save()
+        self.assertEqual(user, storage.get("User", user.id))
+
+    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    def test_count2(self):
+        """Test that count properly counts all objects"""
+        storage = FileStorage()
+        nobjs = len(storage._FileStorage__objects)
+        self.assertEqual(nobjs, storage.count())
