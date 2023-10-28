@@ -129,20 +129,14 @@ class TestFileStorage(unittest.TestCase):
     def test_count(self):
         """Testing for the count method of the fsstorage
         """
+        storage = FileStorage()
         self.assertIsInstance(storage.count(), int)
         self.assertIsInstance(storage.count(State), int)
+        self.assertEqual(len(storage._FileStorage__objects), storage.count())
 
     # @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
-    # def test_get2(self):
-    #     """Test that get properly returns a requested object"""
+    # def test_count2(self):
+    #     """Test that count properly counts all objects"""
     #     storage = FileStorage()
-    #     user = User(name="User1")
-    #     user.save()
-    #     self.assertEqual(user, storage.get("User", user.id))
-
-    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
-    def test_count2(self):
-        """Test that count properly counts all objects"""
-        storage = FileStorage()
-        nobjs = len(storage._FileStorage__objects)
-        self.assertEqual(nobjs, storage.count())
+    #     nobjs = len(storage._FileStorage__objects)
+    #     self.assertEqual(nobjs, storage.count())
