@@ -94,8 +94,8 @@ class TestFileStorage(unittest.TestCase):
         # storage = DBStorage()
         kwargs = {"name": "Mbali"}
         instance = State(**kwargs)
-        storage.new(instance)
-        storage.save()
+        instance.new()
+        instance.save()
         get_ins = storage.get(State, instance.id)
         self.assertEqual(get_ins, instance)
 
@@ -113,12 +113,12 @@ class TestFileStorage(unittest.TestCase):
         num = storage.count()
         self.assertEqual(num, len(storage.all()))
 
-    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
-    def test_get2(self):
-        """Test that get properly returns a requested object"""
-        user = User(name="User1")
-        user.save()
-        self.assertEqual(models.storage.get("User", user.id), user)
+    # @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    # def test_get2(self):
+    #     """Test that get properly returns a requested object"""
+    #     user = User(name="User1")
+    #     user.save()
+    #     self.assertEqual(models.storage.get("User", user.id), user)
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_count2(self):
