@@ -190,17 +190,18 @@ else:
 **Request Body**:
 ```json
 {
-  "name": "New State"
+  "name": "California"
 }
 ```
 
 **Example Response Body**:
 ```json
 {
-  "id": "3",
-  "name": "New State",
-  "created_at": "2023-10-30T14:00:00",
-  "updated_at": "2023-10-30T14:00:00"
+  "__class__": "State",
+  "created_at": "2017-04-15T01:30:27.557877",
+  "id": "feadaa73-9e4b-4514-905b-8253f36b46f6",
+  "name": "California",
+  "updated_at": "2017-04-15T01:30:27.558081"
 }
 ```
 
@@ -223,17 +224,18 @@ else:
 **Request Body**:
 ```json
 {
-  "name": "Updated State Name"
+  "name": "California Love"
 }
 ```
 
 **Example Response Body**:
 ```json
 {
-  "id": "1",
-  "name": "Updated State Name",
-  "created_at": "2023-10-30T00:00:00",
-  "updated_at": "2023-10-30T15:00:00"
+  "__class__": "State",
+  "created_at": "2017-04-15T01:30:28",
+  "id": "feadaa73-9e4b-4514-905b-8253f36b46f6",
+  "name": "California is so cool",
+  "updated_at": "2017-04-15T01:51:08.044996"
 }
 ```
 
